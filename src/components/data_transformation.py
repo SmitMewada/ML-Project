@@ -106,6 +106,8 @@ class DataTranformation:
             
             logging.info("Saved preprocessed data.")
             
+            return (train_arr, test_arr)
+            
         except Exception as e:
             raise CustomException(e, sys)
     
