@@ -9,10 +9,20 @@ class PredictPipline:
         pass
     
     def predict(self, features):
-        model_path = "artifacts/model.pkl"
-        preprocessor_path = "artifacts/preprocessor.pkl"
-        model = load_object(file_path=model_path)
+        try: 
+            model_path = "artifacts/model.pkl"
+            preprocessor_path = "artifacts/preprocessor.pkl"
+            model = load_object(file_path=model_path)
+            preprocessor = load_object(file_path=preprocessor_path)
+            data_scaled = preprocessor.transform(features)
+            print(features)
         
+            preds = model.predict(data_scaled)
+            print(data_scaled)
+            return 0
+        
+        except Exception as e:
+            raise CustomException(e, sys)
         
 class CustomData():
     def __init__(self,
